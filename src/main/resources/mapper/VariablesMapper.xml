@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dao.VariablesMapper">
+
+    <delete id="deleteByNames">
+        DELETE FROM variable_info where variable_info.variable_name in
+        <foreach collection="set" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <select id="selectByEnvId" resultType="com.example.entity.Variables">
+        select
+            variable_name,variable_type
+        from
+            variable_info
+        where
+            env_id = #{envId}
+    </select>
+
+    <update id="updateByName" parameterType="com.example.entity.Variables">
+        update variable_info set variable_type =#{variableType}  where variable_name = #{variableName}
+    </update>
+
+</mapper>
