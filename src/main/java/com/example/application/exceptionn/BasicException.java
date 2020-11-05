@@ -10,7 +10,7 @@ import org.springframework.http.HttpStatus;
  * @Date: 2020/6/3014:21
  */
 @Getter
-public class BasicException extends Exception {
+public class BasicException extends RuntimeException {
     private HttpStatus httpStatus = HttpStatus.OK;
     private String errorCode = "-1";
     private String errorMsg = "系统内部异常";
